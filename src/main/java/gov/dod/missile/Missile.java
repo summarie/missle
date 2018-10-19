@@ -13,19 +13,19 @@ public class Missile {
 
     static{
 
-        impactPointMap.put("T1", new ImpactPoint("T1","서울특별시	",	37.56667	,	126.97806	,	5	,	40	,	5	,	40	,	120));
-        impactPointMap.put("T2", new ImpactPoint("T2","부산광역시	",	35.17944	,	129.07556	,	5	,	40	,	5	,	40	,	120));
-        impactPointMap.put("T3", new ImpactPoint("T3","인천광역시	",	37.45639	,	126.70528	,	5	,	40	,	5	,	40	,	120));
-        impactPointMap.put("T4", new ImpactPoint("T4","대구광역시	",	35.87222	,	128.6025	,	5	,	40	,	5	,	40	,	120));
-        impactPointMap.put("T5", new ImpactPoint("T5","대전광역시	",	36.35111	,	127.385	,	5	,	40	,	5	,	40	,	120));
-        impactPointMap.put("T6", new ImpactPoint("T6","광주광역시	",	35.15972	,	126.85306	,	5	,	40	,	5	,	40	,	120));
-        impactPointMap.put("T7", new ImpactPoint("T7","울산광역시	",	35.53889	,	129.31667	,	5	,	40	,	5	,	40	,	120));
-        impactPointMap.put("T8", new ImpactPoint("T8","고양시	",	37.65833	,	126.83056	,	5	,	40	,	5	,	40	,	120));
-        impactPointMap.put("T9", new ImpactPoint("T9","성남시	",	37.44722	,	127.1375	,	5	,	40	,	5	,	40	,	120));
+        impactPointMap.put("T1", new ImpactPoint("T1","서울특별시	",		126.97806	, 37.56667,	5	,	40	,	5	,	40	,	120));
+        impactPointMap.put("T2", new ImpactPoint("T2","부산광역시	",		129.07556	,35.17944,5	,	40	,	5	,	40	,	120));
+        impactPointMap.put("T3", new ImpactPoint("T3","인천광역시	",		126.70528	, 37.45639,	5	,	40	,	5	,	40	,	120));
+        impactPointMap.put("T4", new ImpactPoint("T4","대구광역시	",		128.6025	, 35.87222,	5	,	40	,	5	,	40	,	120));
+        impactPointMap.put("T5", new ImpactPoint("T5","대전광역시	",		127.385	,	36.35111,5	,	40	,	5	,	40	,	120));
+        impactPointMap.put("T6", new ImpactPoint("T6","광주광역시	",		126.85306	,	35.15972,5	,	40	,	5	,	40	,	120));
+        impactPointMap.put("T7", new ImpactPoint("T7","울산광역시	",		129.31667	,	35.53889,5	,	40	,	5	,	40	,	120));
+        impactPointMap.put("T8", new ImpactPoint("T8","고양시	",		126.81056	,	37.56333,5	,	40	,	5	,	40	,	120));
+        impactPointMap.put("T9", new ImpactPoint("T9","성남시	",		127.1375	,	37.49722,5	,	40	,	5	,	40	,	120));
         impactPointMap.put("T10", new ImpactPoint("T10","세종특별자치시	",	36.4875	,	127.28167	,	5	,	40	,	5	,	40	,	120));
 
         launchPointMap.put("L1", new LaunchPoint("L1","	해주시	",	125.71667	,	38.03333));
-        launchPointMap.put("L2", new LaunchPoint("L2	","	평산	",	126.39	,	38.33));
+        launchPointMap.put("L2", new LaunchPoint("L2	","	평산	",	126.49	,	38.03));
         launchPointMap.put("L3", new LaunchPoint(		"	L3	","	사리원시	",	125.74	,	38.5));
         launchPointMap.put("L4", new LaunchPoint(		"	L4	","	남포특별시	",	125.4	,	38.73333));
         launchPointMap.put("L5", new LaunchPoint(		"	L5	","	원산시	",	127.44611	,	39.1475));
@@ -46,6 +46,7 @@ public class Missile {
     double xLocation;
     double yLocation;
     double zLocation;
+    double speed = 1.5;
 
     LaunchPoint launchPoint;
     ImpactPoint impactPoint;
@@ -125,6 +126,10 @@ public class Missile {
 
     public void setImpactPoint(ImpactPoint impactPoint) {
         this.impactPoint = impactPoint;
+    }
+
+    public double getspeed(double s) {
+        return 1+500/(500+s)*0.6;
     }
 
 
