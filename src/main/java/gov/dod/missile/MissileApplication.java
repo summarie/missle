@@ -22,20 +22,20 @@ public class MissileApplication {
 	static EnemyMissileType scud_c = new EnemyMissileType();
 
 	public static void main(String[] args) {
-	//	SpringApplication.run(MissileApplication.class, args);
+		SpringApplication.run(MissileApplication.class, args);
 
-		Missile missile = new Missile();
-		missile.setImpactPointId("T8");
-		missile.setLaunchPointId("L2");
-
-		MissileApplication missileApplication = new MissileApplication();
-		missileApplication.setMissile(missile);
-
-		System.out.println(missileApplication.engageFeasible());
-		System.out.println(missileApplication.bda());
-		if(missileApplication.bda()) {
-			System.out.println("Success Rate " + Math.random()*(30)+40);
-		}
+//		Missile missile = new Missile();
+//		missile.setImpactPointId("T8");
+//		missile.setLaunchPointId("L2");
+//
+//		MissileApplication missileApplication = new MissileApplication();
+//		missileApplication.setMissile(missile);
+//
+//		System.out.println(missileApplication.engageFeasible());
+//		System.out.println(missileApplication.bda());
+//		if(missileApplication.bda()) {
+//			System.out.println("Success Rate " + Math.random()*(30)+40);
+//		}
 	}
 
 	static Missile missile = new Missile();
@@ -44,6 +44,9 @@ public class MissileApplication {
 	public Missile getMissile(){
 
 		///System.out.println("now the missile info has been requested");
+
+		missile.setOutOfRange(Math.random() < 0.01);
+		missile.setBurnedOut(true);
 
 		return missile;
 	}
@@ -94,12 +97,13 @@ public class MissileApplication {
 	}
 
 	@RequestMapping(path="/dba", method = {RequestMethod.GET})
-	public boolean bda(){
+	public int bda(){
 		int fcq = 18;//15 + (int)(5 * Math.random());
 
-
-
-		return checkPossibility(fcq);
+		if(checkPossibility(fcq))
+			return (int)((Math.random()*(30)+40));
+		else
+			return 0;
 	}
 
 	public boolean checkPossibility(int fcq){

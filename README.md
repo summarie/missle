@@ -48,3 +48,16 @@ $ http POST localhost:8080/estimate launchPointId=L1 impactPointId=T1
  docker push gcr.io/uengine-istio-test/missile-track:v2
  kubectl set image deploy/missile missile=gcr.io/uengine-istio-test/missile-track:v2
 ```
+
+## Test
+```
+ http localhost:8080/missile impactPointId="T8" launchPointId="L2"
+  596  http localhost:8080/engageFeasible
+  599  http localhost:8080/dba
+  600  http localhost:8080/missile impactPointId="T8" launchPointId="L3"
+  601  http localhost:8080/dba
+  602  http localhost:8080/engageFeasible
+  603  http localhost:8080/missile impactPointId="T8" launchPointId="L3"
+  605  http localhost:8080/missile impactPointId="T8" launchPointId="L2"
+  606  http localhost:8080/dba
+```
