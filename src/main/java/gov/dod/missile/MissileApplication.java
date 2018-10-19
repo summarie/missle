@@ -25,16 +25,13 @@ public class MissileApplication {
 	//	SpringApplication.run(MissileApplication.class, args);
 
 		Missile missile = new Missile();
-		missile.setImpactPointId("T1");
-		missile.setLaunchPointId("L8");
+		missile.setImpactPointId("T8");
+		missile.setLaunchPointId("L2");
 
 		MissileApplication missileApplication = new MissileApplication();
 		missileApplication.setMissile(missile);
 
 		System.out.println(missileApplication.engageFeasible());
-		System.out.println(missileApplication.bda());
-		System.out.println(missileApplication.bda());
-		System.out.println(missileApplication.bda());
 		System.out.println(missileApplication.bda());
 		if(missileApplication.bda()) {
 			System.out.println("Success Rate " + Math.random()*(30)+40);
@@ -107,20 +104,28 @@ public class MissileApplication {
 
 	public boolean checkPossibility(int fcq){
 
+		double speedx;
+
 		missile.init();
 
-		double targetX = R * (Math.abs(missile.getLaunchPoint().getLongitude() - missile.getImpactPoint().getLongitude()) * Math.PI / 180)
+		double targetX = R * (Math.abs( missile.getLaunchPoint().getLongitude() - missile.getImpactPoint().getLongitude()) * Math.PI / 180)
 				* Math.cos((missile.getLaunchPoint().getLatitude() + missile.getImpactPoint().getLatitude()) * Math.PI / (2*180));
 
 		double targetY = R * ((Math.abs(missile.getLaunchPoint().getLatitude() - missile.getImpactPoint().getLatitude()) * Math.PI / 180));
 
+		//System.out.println(missile.getLaunchPoint().getLongitude());
+		//System.out.println(missile.getImpactPoint().getLongitude());
+		//System.out.println(targetX);
+		//System.out.println(targetY);
 		///////////// implicitly set
-		targetX = 30;
-		targetY = 45;
+		//targetX = 29;
+		//targetY = 55;
 
 		double s = Math.sqrt(targetX * targetX + targetY * targetY);
 		double theta = Math.atan2(targetX, targetY);
 
+		speedx = missile.getspeed(s);
+		System.out.println(speedx);
 		///
 		double a = scud_c.getAlphaA() * Math.exp(scud_c.getBetaA() * s) + scud_c.getGammaA() * Math.exp(scud_c.getDeltaA() * s);
 		double b = scud_c.getAlphaB() * Math.exp(scud_c.getBetaB() * s) + scud_c.getGammaB() * Math.exp(scud_c.getDeltaB() * s);
@@ -130,7 +135,7 @@ public class MissileApplication {
 		List<Double> myList = new ArrayList<Double>();
 		List<Double> xList = new ArrayList<Double>();
 		List<Double> yList = new ArrayList<Double>();
-		for(double x = 0; x <= s; x+=1.5){
+		for(double x = 0; x <= s; x+=speedx){
 			double y = a * x*x + b * x + scud_c.getEpsilon();
 			double d = ( ( b * -1 - Math.sqrt(b *b + 4*a*y )) / (2*a));
 			//double d = x;
