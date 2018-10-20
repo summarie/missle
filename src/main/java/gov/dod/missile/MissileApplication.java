@@ -98,7 +98,7 @@ public class MissileApplication {
 
 	@RequestMapping(path="/dba", method = {RequestMethod.GET})
 	public int bda(){
-		int fcq = 18;//15 + (int)(5 * Math.random());
+		int fcq = getMissile().getFcq();//18;//15 + (int)(5 * Math.random());
 
 		if(checkPossibility(fcq))
 			return (int)((Math.random()*(30)+40));

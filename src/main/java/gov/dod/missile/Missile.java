@@ -48,6 +48,16 @@ public class Missile {
     double zLocation;
     double speed = 1.5;
 
+    public int getFcq() {
+        return fcq;
+    }
+
+    public void setFcq(int fcq) {
+        this.fcq = fcq;
+    }
+
+    int fcq;
+
     LaunchPoint launchPoint;
     ImpactPoint impactPoint;
 
